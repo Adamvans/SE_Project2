@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@page import="com.aws.codestar.projecttemplates.Count"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <%
+        Count display= new Count();//Creating class Object
+        display.addC();//Calling add Method
+        int num = display.getCount();
+    %>
     <title>JavaSpringWebApp</title>
     <meta name="description" content="" />
 
@@ -47,7 +53,7 @@
         <div class="text">
           <h1>Congratulations!</h1>
           <h2>You just created a Java Spring web application.</h2>
-          <h2>Yay Me<h2>
+          <h2>Count: <%= num %><h2>
         </div>
       </div>
     </div>
