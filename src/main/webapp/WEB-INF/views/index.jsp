@@ -5,9 +5,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <%
-       Count display= new Count();//Creating class Object
-       display.addC();//Calling add Method
-       int num = display.getCount();
+       //Count display= new Count();//Creating class Object
+       //display.addC();//Calling add Method
+       //int num = display.getCount();
     %>
     <title>JavaSpringWebApp</title>
     <meta name="description" content="" />
