@@ -5,6 +5,10 @@
  */
 package com.aws.codestar.projecttemplates;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 /**
  *
  * @author dexter
@@ -15,7 +19,6 @@ public class Board
     private int y;
     private int indexX;
     private int indexY;
-    boolean clickEvent;
     boolean runGame;
     Square gameBoard [][];
     
@@ -23,7 +26,6 @@ public class Board
     public Board()
     {
         gameBoard = new Square[22][22];
-        clickEvent = false;
         runGame = false;
         for (int i = 0; i < 22; i++)
         {
@@ -45,20 +47,31 @@ public class Board
         this.y = y;
         //assume that it is an on click
         translateToIndex(x, y);
-         clickEvent = true;
-        if (!runGame)
+        if (gameBoard[x][y].isSelected())
         {
-            runGame = true;
-            runGame();
+            
+        }
+        else if (!gameBoard[x][y].isSelected() &&!gameBoard[x][y].isEdge())
+        {
+            
         }
     }
    
     //main run method
-    private void runGame()
-    {
+    public void runGame()
+    {    
         Square temp [][] = new Square[22][22];
         while (runGame)
         {
+            try        
+            {
+                Thread.sleep(750);
+            } 
+            catch(InterruptedException ex) 
+            {
+                Thread.currentThread().interrupt();
+            }
+            
             //copy temp
             for (int i = 0; i < 22; i++)
             {
@@ -66,8 +79,37 @@ public class Board
                 {
                     temp [i][j] = gameBoard[i][j];
                 }
-            }
+            }            
             
+            for (int i = 0; i < 22; i++)
+            {
+                for (int j = 0; j < 22; j++)
+                {
+                    if (temp[i][j].isSelected())
+                    {
+                       if (shouldDie (i,j))
+                       {
+                           temp[i][j].deselectSquare();
+                       }
+                    }
+                    else //not selected
+                    {
+                        if(shouldLive(i,j))
+                        {
+                            temp[i][j].selectSquare();
+                        }
+                    }
+                }//inner for
+            }//outer for
+            
+            //copy temp back to the game board
+            for (int i = 0; i < 22; i++)
+            {
+                for (int j = 0; j < 22; i++)
+                {
+                    gameBoard [i][j] = temp[i][j];
+                }
+            }
         }//while
     }
     
@@ -94,6 +136,12 @@ public class Board
     {
         int neighbors = 0;
         
+        //check if it is an edge
+        if (gameBoard[x][y].isEdge())
+        {
+            return false;
+        }
+        
         if(gameBoard[x+1][y].isSelected())
         {
             neighbors++;
@@ -116,5 +164,39 @@ public class Board
            return false; 
         }
         return true;        
+    }
+    
+    private boolean shouldLive(int x, int y)
+    {
+        int neighbors = 0;
+        
+        //check if it is an edge
+        if (gameBoard[x][y].isEdge())
+        {
+            return false;
+        }
+        
+        if(gameBoard[x+1][y].isSelected())
+        {
+            neighbors++;
+        }
+        if(gameBoard[x-1][y].isSelected())
+        {
+            neighbors++;
+        }
+        if(gameBoard[x][y+1].isSelected())
+        {
+            neighbors++;
+        }
+        if(gameBoard[x][y-1].isSelected())
+        {
+            neighbors++;
+        }
+        
+        if(neighbors > 3)
+        {
+           return true; 
+        }
+        return false;
     }
 }
