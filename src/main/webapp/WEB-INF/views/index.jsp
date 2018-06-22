@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@page import="com.aws.codestar.projecttemplates.Count"%>
+<%@ page import="grid.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <%
-        Count display= new Count();//Creating class Object
-        display.addC();//Calling add Method
-        int num = display.getCount();
+       Count display= new Count();//Creating class Object
+       display.addC();//Calling add Method
+       int num = display.getCount();
     %>
     <title>JavaSpringWebApp</title>
     <meta name="description" content="" />
@@ -34,29 +33,33 @@
           </svg>
         </div>
       </div>
-
-      <header>
-        <nav class="website-nav">
-          <ul>
-            <li><a class="home-link" href="https://aws.amazon.com/">Home</a></li>
-            <li><a href="https://aws.amazon.com/what-is-cloud-computing/">About</a></li>
-            <li><a href="https://aws.amazon.com/solutions/">Services</a></li>
-            <li><a href="https://aws.amazon.com/contact-us/">Contact</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      <div class="message">
-          <a class="twitter-link" href="http://twitter.com/home/?status=I%20created%20a%20project%20with%20AWS%20CodeStar!%20%23AWS%20%23AWSCodeStar%20https%3A%2F%2Faws.amazon.com%2Fcodestar">
-              <img src="${tweetSvg}" alt="Tweet"/>
-          </a>
-        <div class="text">
           <h1>Congratulations!</h1>
           <h2>You just created a Java Spring web application.</h2>
           <h2>Count: <%= num %><h2>
         </div>
       </div>
     </div>
+        
+        <canvas id="myCanvas" width="200" height="200" style="border:1px solid #000000;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+<script>
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+for(var i = 0; i < 20; i++)
+{
+	for(var j = 0; j < 20;j++)
+    {
+    	row = i * 10;
+        col = j * 10;
+    	ctx.rect(row, col, row + 10, col + 10);
+		ctx.stroke();
+    }
+}
+
+
+</script> 
 
     <footer>
       <p class="footer-contents">Designed and developed with <a href="https://aws.amazon.com/careers/devtools-jobs/">♥</a> in Seattle.</p>
