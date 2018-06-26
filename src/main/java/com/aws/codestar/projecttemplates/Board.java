@@ -5,10 +5,6 @@
  */
 package com.aws.codestar.projecttemplates;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
 /**
  *
  * @author dexter
@@ -47,13 +43,13 @@ public class Board
         this.y = y;
         //assume that it is an on click
         translateToIndex(x, y);
-        if (gameBoard[x][y].isSelected())
+        if (gameBoard[indexX][indexY].isSelected())
         {
-            
+            gameBoard[indexX][indexY].deselectSquare();
         }
-        else if (!gameBoard[x][y].isSelected() &&!gameBoard[x][y].isEdge())
+        else if (!gameBoard[indexX][indexY].isSelected() &&!gameBoard[indexX][indexY].isEdge())
         {
-            
+            gameBoard[indexX][indexY].selectSquare();
         }
     }
    
@@ -65,7 +61,7 @@ public class Board
         {
             try        
             {
-                Thread.sleep(750);
+                Thread.sleep(500);
             } 
             catch(InterruptedException ex) 
             {
@@ -73,17 +69,17 @@ public class Board
             }
             
             //copy temp
-            for (int i = 0; i < 22; i++)
+            for (int i = 1; i < 21; i++) //1 and 21 to skip the edges
             {
-                for (int j = 0; j < 22; i++)
+                for (int j = 1; j < 21; i++)
                 {
                     temp [i][j] = gameBoard[i][j];
                 }
             }            
             
-            for (int i = 0; i < 22; i++)
+            for (int i = 1; i < 21; i++)
             {
-                for (int j = 0; j < 22; j++)
+                for (int j = 1; j < 21; j++)
                 {
                     if (temp[i][j].isSelected())
                     {
@@ -103,9 +99,9 @@ public class Board
             }//outer for
             
             //copy temp back to the game board
-            for (int i = 0; i < 22; i++)
+            for (int i = 1; i < 21; i++)
             {
-                for (int j = 0; j < 22; i++)
+                for (int j = 1; j < 21; i++)
                 {
                     gameBoard [i][j] = temp[i][j];
                 }
@@ -129,6 +125,16 @@ public class Board
         {
             return;
         } 
+        
+        if (gameBoard[indexX][indexY].isSelected())
+        {
+           //set the color 
+        }
+        else
+        {
+            //set the non selected color
+        }
+            
     }
     
     //tells you if a square should die or not
@@ -155,6 +161,23 @@ public class Board
             neighbors++;
         }
         if(gameBoard[x][y-1].isSelected())
+        {
+            neighbors++;
+        }
+        
+        if(gameBoard[x-1][y+1].isSelected())
+        {
+            neighbors++;
+        }
+        if(gameBoard[x-1][y-1].isSelected())
+        {
+            neighbors++;
+        }
+        if(gameBoard[x+1][y+1].isSelected())
+        {
+            neighbors++;
+        }
+        if(gameBoard[x+1][y-1].isSelected())
         {
             neighbors++;
         }
@@ -193,6 +216,22 @@ public class Board
             neighbors++;
         }
         
+         if(gameBoard[x-1][y+1].isSelected())
+        {
+            neighbors++;
+        }
+        if(gameBoard[x-1][y-1].isSelected())
+        {
+            neighbors++;
+        }
+        if(gameBoard[x+1][y+1].isSelected())
+        {
+            neighbors++;
+        }
+        if(gameBoard[x+1][y-1].isSelected())
+        {
+            neighbors++;
+        }
         if(neighbors > 3)
         {
            return true; 
