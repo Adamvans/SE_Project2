@@ -15,20 +15,10 @@
     <link href="${gradientsCss}" rel="stylesheet">
     
     <script>
-        window.onload = function()
-        {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() 
-            {
-                if (this.readyState === 4 && this.status === 200) 
-                {
-                    document.getElementById("answer").innerHTML = this.responseText;
-                }
-            };
-            
-            xmlhttp.open("GET", "Count.Java" , true);
-            xmlhttp.send(); 
-        };
+        var source = new EventSource("Count.java");
+        source.onmessage = function(event) {
+        document.getElementById("answer").innerHTML += event.data;
+};
         
     </script>
   </head>
