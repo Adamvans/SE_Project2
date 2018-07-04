@@ -11,7 +11,7 @@
    
     
     <%
-        Count display= new Count();//Creating class Object
+        com.aws.codestar.projecttemplates.Count display= new Count();//Creating class Object
         display.addC();//Calling add Method
         int num = display.getCount();
         
