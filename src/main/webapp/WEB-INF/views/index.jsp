@@ -7,12 +7,8 @@
     <meta name="description" content="" />
    
     
-    <%
-        com.aws.codestar.projecttemplates.Count display= new com.aws.codestar.projecttemplates.Count();//Creating class Object
-        display.addC();//Calling add Method
-        int num = display.getCount();
-        
-        //Board temp = new Board();
+    <%       
+        com.aws.codestar.projecttemplates.Board temp = new com.aws.codestar.projecttemplates.Board();
     %>  
   </head>
   <body class="">
@@ -20,7 +16,6 @@
           
           <h1>Congratulations!</h1>
           <h2>Current date is: <%= new java.util.Date().toString() %></h2>
-           <h2>Count: <%= num %><h2>
           <h2><span id = "answer"></span><h2>
                   
         </div>
