@@ -24,7 +24,7 @@
             document.getElementById("answer").innerHTML += "<br> onload";
     </script>
     <%       
-        com.aws.codestar.projecttemplates.Board temp = new com.aws.codestar.projecttemplates.Board();
+        //com.aws.codestar.projecttemplates.Board temp = new com.aws.codestar.projecttemplates.Board();
     %>  
   </head>
   <body class="">
