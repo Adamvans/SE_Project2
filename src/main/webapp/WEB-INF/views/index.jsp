@@ -5,8 +5,24 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>SE_A2</title>
     <meta name="description" content="" />
-   
-    
+    <script>
+        var socket = new WebSocket("ws://localhost:8080/SE_Project2/Count");
+
+
+        socket.onmessage = function (event) 
+        {
+             document.getElementById("answer").innerHTML += "Count: " + event.data;
+        };
+
+        function test() 
+        {
+            document.getElementById("answer").innerHTML += "<br>" + "sending data";
+            socket.send("test");
+        }
+
+
+            document.getElementById("answer").innerHTML += "<br> onload";
+    </script>
     <%       
         com.aws.codestar.projecttemplates.Board temp = new com.aws.codestar.projecttemplates.Board();
     %>  
