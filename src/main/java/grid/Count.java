@@ -36,29 +36,29 @@ public class Count{
        cnt++;
    }
    
-//    @OnOpen
-//    public void open(Session session) throws IOException 
-//    {  
-//      addC();
-//      session.getBasicRemote().sendText(String.valueOf(cnt));
-//    }
-//
-//    @OnClose
-//    public void close(Session session) 
-//    {
-//        
-//    }
-//    
-//    @OnError
-//    public void onError(Throwable error) 
-//    {
-//        Logger.getLogger(Count.class.getName()).log(Level.SEVERE, null, error);
-//    }
-//    
-//    
-//    @OnMessage
-//    public void handleMessage(String message, Session session) throws IOException 
-//    {
-//        session.getBasicRemote().sendText(message);
-//    }
+    @OnOpen
+    public void open(Session session) throws IOException 
+    {  
+      addC();
+      session.getBasicRemote().sendText(String.valueOf(cnt));
+    }
+
+    @OnClose
+    public void close(Session session) 
+    {
+        
+    }
+    
+    @OnError
+    public void onError(Throwable error) 
+    {
+        Logger.getLogger(Count.class.getName()).log(Level.SEVERE, null, error);
+    }
+    
+    
+    @OnMessage
+    public void handleMessage(String message, Session session) throws IOException 
+    {
+        session.getBasicRemote().sendText(message);
+    }
 }
