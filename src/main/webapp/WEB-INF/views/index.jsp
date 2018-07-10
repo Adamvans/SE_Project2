@@ -43,6 +43,7 @@ Your browser does not support the HTML5 canvas tag.</canvas>
     <script>
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
+            var rects = [];
 
             for(var i = 0; i < 20; i++)
             {
@@ -51,9 +52,54 @@ Your browser does not support the HTML5 canvas tag.</canvas>
                     row = i * 10;
                     col = j * 10;
                     ctx.rect(row, col, row + 10, col + 10);
-                            ctx.stroke();
+                    ctx.stroke();
+                    rects.push({x: row, y: col, w: 10, h: 10});
                 }
             }
+            
+            // get canvas element.
+
+            function collides(rects, x, y) 
+            {
+                var isCollision = false;
+                for (var i = 0, len = rects.length; i < len; i++) 
+                {
+                    var left = rects[i].x, right = rects[i].x+rects[i].w;
+                    var top = rects[i].y, bottom = rects[i].y+rects[i].h;
+                    
+                    if (right >= x && left <= x && bottom >= y && top <= y) 
+                    {
+                        isCollision = rects[i];
+                    }
+                }
+                return isCollision;
+            } 
+            
+            // listener, using W3C style for example    
+            c.addEventListener('click', function(e) 
+            {
+                document.getElementById("answer").innerHTML += '<br>' + 'click: ' + e.offsetX + '/' + e.offsetY;
+                var rect = collides(rects, e.offsetX, e.offsetY);
+                if (rect) 
+                {
+                    document.getElementById("answer").innerHTML += '<br>' + 'collision: ' + rect.x + '/' + rect.y;
+                } 
+                else 
+                {
+                    document.getElementById("answer").innerHTML += '<br>' + 'no collision';
+                }
+            }, false);
+            
+//            if (context) {
+//
+//      for (var i = 0, len = rects.length; i < len; i++) {
+//        context.fillRect(rects[i].x, rects[i].y, rects[i].w, rects[i].h);
+//      }
+//
+//  }
+            
+            
+            
      </script>
 </body>
 </html>
