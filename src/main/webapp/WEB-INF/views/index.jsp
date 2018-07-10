@@ -88,16 +88,7 @@ Your browser does not support the HTML5 canvas tag.</canvas>
                 {
                     document.getElementById("answer").innerHTML += '<br>' + 'no collision';
                 }
-            }, false); 
-            
-//            if (context) {
-//
-//      for (var i = 0, len = rects.length; i < len; i++) {
-//        context.fillRect(rects[i].x, rects[i].y, rects[i].w, rects[i].h);
-//      }
-//
-//  }
-            
+            }, false);    
             
             
      </script>
