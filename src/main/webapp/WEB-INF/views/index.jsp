@@ -88,7 +88,7 @@ Your browser does not support the HTML5 canvas tag.</canvas>
                 {
                     document.getElementById("answer").innerHTML += '<br>' + 'no collision';
                 }
-            }, false);
+            }, false); 
             
 //            if (context) {
 //
