@@ -23,10 +23,7 @@
 
         document.getElementById("answer").innerHTML += "<br> onload";
         
-    </script>
-    <%       
-        //com.aws.codestar.projecttemplates.Board temp = new com.aws.codestar.projecttemplates.Board();
-    %>  
+    </script>  
   </head>
   <body class="">
        
@@ -92,8 +89,6 @@ Your browser does not support the HTML5 canvas tag.</canvas>
                     //document.getElementById("answer").innerHTML += '<br>' + 'no collision';
                 }
             }, false);    
-            
-            
      </script>
 </body>
 </html>
