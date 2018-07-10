@@ -6,22 +6,25 @@
     <title>SE_A2</title>
     <meta name="description" content="" />
     <script>
-        var socket = new WebSocket("ws://localhost:8080/SE_Project2/Count");
+        var socket = new WebSocket("ws://localhost:8080/SE_Project2/WebSoc");
 
 
         socket.onmessage = function (event) 
         {
              document.getElementById("answer").innerHTML += "Count: " + event.data;
         };
-
+ 
         function test() 
         {
             document.getElementById("answer").innerHTML += "<br>" + "sending data";
             socket.send("test");
         }
 
-
-        document.getElementById("answer").innerHTML += "<br> onload";
+        function send(rect)
+        {
+            socket.send(JSON.stringify(rect));
+        }
+        
         
     </script>  
   </head>
@@ -82,7 +85,7 @@ Your browser does not support the HTML5 canvas tag.</canvas>
                 {
                     //document.getElementById("answer").innerHTML += '<br>' + 'collision: ' + rect.x + '/' + rect.y;
                     ctx.fillRect(rect.x, rect.y, rect.w, rect.h);
-                    
+                    send(rect);
                 } 
                 else 
                 {
