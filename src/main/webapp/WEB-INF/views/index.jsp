@@ -28,7 +28,7 @@
   <body class="">
        
           
-          <h1>Congratulations!</h1>
+          <h1>Congratulations! It's Alive</h1>
           <h2>Current date is: <%= new java.util.Date().toString() %></h2>
           <h2><span id = "answer"></span><h2>
                   
