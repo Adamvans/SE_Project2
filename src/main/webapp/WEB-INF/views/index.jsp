@@ -21,7 +21,8 @@
         }
 
 
-            document.getElementById("answer").innerHTML += "<br> onload";
+        document.getElementById("answer").innerHTML += "<br> onload";
+        
     </script>
     <%       
         //com.aws.codestar.projecttemplates.Board temp = new com.aws.codestar.projecttemplates.Board();
@@ -82,22 +83,15 @@ Your browser does not support the HTML5 canvas tag.</canvas>
                 var rect = collides(rects, e.offsetX, e.offsetY);
                 if (rect) 
                 {
-                    document.getElementById("answer").innerHTML += '<br>' + 'collision: ' + rect.x + '/' + rect.y;
+                    //document.getElementById("answer").innerHTML += '<br>' + 'collision: ' + rect.x + '/' + rect.y;
+                    ctx.fillRect(rect.x, rect.y, rect.w, rect.h);
+                    
                 } 
                 else 
                 {
-                    document.getElementById("answer").innerHTML += '<br>' + 'no collision';
+                    //document.getElementById("answer").innerHTML += '<br>' + 'no collision';
                 }
-            }, false); 
-            
-//            if (context) {
-//
-//      for (var i = 0, len = rects.length; i < len; i++) {
-//        context.fillRect(rects[i].x, rects[i].y, rects[i].w, rects[i].h);
-//      }
-//
-//  }
-            
+            }, false);    
             
             
      </script>
