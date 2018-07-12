@@ -6,26 +6,60 @@
 package grid;
 
 import com.aws.codestar.projecttemplates.Board;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.json.JsonObject;
+import javax.websocket.Session;
 
 /**
  *
  * @author Ethgar
  */
 public class SessionHandler {
-    private final Set sessions = new HashSet();
+    private final Set<Session> sessions = new HashSet();
     private final Board current = new Board();
-    private final Board next = new Board();
     
     
-   
     
-     public void addSession(javax.websocket.Session session) {
+    public void addSession(Session session) 
+    {
         sessions.add(session);
+        JsonObject addMessage = createAddMessage(gameBoard);
+        sendToSession(session, addMessage);
         
     }
+    
+    public void removeSession(Session session) 
+    {
+        sessions.remove(session);
+    }
+    
+    private void sendToAllConnectedSessions(JsonObject message) 
+    {
+        for (Session session : sessions) 
+        {
+            sendToSession(session, message);
+        }
+    }
+
+    private void sendToSession(Session session, JsonObject message) 
+    {
+        try 
+        {
+            session.getBasicRemote().sendText(message.toString());
+        } catch (IOException ex) 
+        {
+            sessions.remove(session);
+            Logger.getLogger(SessionHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+   
+    
+     
     
 }
