@@ -30,7 +30,7 @@ public class SessionHandler {
     public void addSession(Session session) 
     {
         sessions.add(session);
-        JsonObject addMessage = createMessage(gameBoard);
+        JsonObject addMessage = createAddMessage(gameBoard);
         sendToSession(session, addMessage);
         
     }
@@ -46,6 +46,24 @@ public class SessionHandler {
         return addMessage;
     }
     
+    public void updateBoard (int x, int y)
+    {
+        gameBoard.setPosition(x, y);
+    }
+    
+    public void startStop (String flag)
+    {
+        if (flag.equals("start"))
+        {
+          gameBoard.startStopGame(true);
+          gameBoard.runGame();
+        }
+        else if (flag.equals("stop"))
+        {
+            gameBoard.startStopGame(false);
+        }
+    }
+
     public void removeSession(Session session) 
     {
         sessions.remove(session);
