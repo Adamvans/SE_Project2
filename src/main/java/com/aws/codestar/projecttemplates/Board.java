@@ -18,6 +18,10 @@ public class Board
     boolean runGame;
     Square gameBoard [][];
     
+    public Square[][] getBoard()
+    {
+        return gameBoard;
+    }
     //default constructor
     public Board()
     {
@@ -119,7 +123,7 @@ public class Board
     }
     
     //sets color of the square
-    private void setColor () // do not call unless translateToIndex has been run
+    public void setColor () // do not call unless translateToIndex has been run
     {
         if (gameBoard[indexX][indexY].isEdge())
         {
