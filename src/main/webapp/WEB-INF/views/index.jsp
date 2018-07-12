@@ -30,7 +30,14 @@
             socket.send(JSON.stringify(corrds));
         }
         
-        
+        function start() 
+        {
+            socket.send("start");
+        }
+        function stop() 
+        {
+            socket.send("stop");
+        }
     </script>  
   </head>
   <body class="">
@@ -39,10 +46,10 @@
           <h1>Congratulations! It's Alive</h1>
           <h2>Current date is: <%= new java.util.Date().toString() %></h2>
           <h2><span id = "answer"></span><h2>
-                  
-        </div>
-      </div>
-    </div>
+          
+          <input type="button" value="Start" onclick="CapacityChart();">
+          <input type="button" value="Stop" onclick="CapacityChart();">
+
         
         <canvas id="myCanvas" width="200" height="200" style="border:1px solid #000000;">
 Your browser does not support the HTML5 canvas tag.</canvas>
