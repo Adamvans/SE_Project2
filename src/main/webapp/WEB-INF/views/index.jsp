@@ -20,9 +20,14 @@
             socket.send("test");
         }
 
-        function send(rect)
+        function send(xin,yin)
         {
-            socket.send(JSON.stringify(rect));
+            var corrds = {
+                    action: "click",
+                    x: xin,
+                    y: yin,
+                };
+            socket.send(JSON.stringify(corrds));
         }
         
         
@@ -79,18 +84,19 @@ Your browser does not support the HTML5 canvas tag.</canvas>
             // listener, using W3C style for example    
             c.addEventListener('click', function(e) 
             {
-                document.getElementById("answer").innerHTML += '<br>' + 'click: ' + e.offsetX + '/' + e.offsetY;
-                var rect = collides(rects, e.offsetX, e.offsetY);
-                if (rect) 
-                {
-                    //document.getElementById("answer").innerHTML += '<br>' + 'collision: ' + rect.x + '/' + rect.y;
-                    ctx.fillRect(rect.x, rect.y, rect.w, rect.h);
-                    send(rect);
-                } 
-                else 
-                {
-                    //document.getElementById("answer").innerHTML += '<br>' + 'no collision';
-                }
+                send(e.offsetX, e.offsetY);
+                //document.getElementById("answer").innerHTML += '<br>' + 'click: ' + e.offsetX + '/' + e.offsetY;
+//                var rect = collides(rects, e.offsetX, e.offsetY);
+//                if (rect) 
+//                {
+//                    //document.getElementById("answer").innerHTML += '<br>' + 'collision: ' + rect.x + '/' + rect.y;
+//                    ctx.fillRect(rect.x, rect.y, rect.w, rect.h);
+//                    send(rect);
+//                } 
+//                else 
+//                {
+//                    //document.getElementById("answer").innerHTML += '<br>' + 'no collision';
+//                }
             }, false);    
      </script>
 </body>
