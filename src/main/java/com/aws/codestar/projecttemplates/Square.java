@@ -13,13 +13,27 @@ public class Square
 {
     private boolean selected;
     private boolean isEdge;
+    private String color;
     
     Square()
     {
         selected = false;
         isEdge = false;
+        color = "white";
     }
     
+    public void setColor(String newColor)
+    {
+        color = newColor;
+    }
+    public String getColor ()
+    {
+        return color;
+    }
+    public boolean getStatus()
+    {
+        return selected;
+    }
     public void selectSquare ()
     {
         selected = true;
