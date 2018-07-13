@@ -31,18 +31,18 @@ public class SessionHandler {
     public void addSession(Session session) 
     {
         sessions.add(session);
-        JsonObject addMessage = createMessage(gameBoard);
+        JsonObject addMessage = createMessage();
         sendToSession(session, addMessage); 
 
     }
     
-    private JsonObject createMessage(Board b) {
+    private JsonObject createMessage() {
         JsonObjectBuilder builder = Json.createObjectBuilder();
-        for(Square[] row: b.getBoard())
-        {
-            for(Square cur: row)
+        for(int i = 1; i < 21; i++)
             {
-                builder.add("color", cur.getColor());
+            for(int j = 1; j < 21; j++)
+            {
+                builder.add("color", gameBoard.getSquare(i, j).getColor());
             }
         }
                 
