@@ -22,6 +22,11 @@ public class Board
     {
         return gameBoard;
     }
+    
+    public Square getSquare(int x, int y)
+    {
+        return gameBoard[x][y];
+    }
     //default constructor
     public Board()
     {
