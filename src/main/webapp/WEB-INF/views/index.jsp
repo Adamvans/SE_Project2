@@ -20,12 +20,13 @@
             socket.send("test");
         }
 
-        function send(xin,yin)
+        function send(xin,yin,scolor)
         {
             var corrds = {
                     action: "click",
                     x: xin,
                     y: yin,
+                    color: scolor,
                 };
             socket.send(JSON.stringify(corrds));
         }
@@ -91,7 +92,7 @@ Your browser does not support the HTML5 canvas tag.</canvas>
             // listener, using W3C style for example    
             c.addEventListener('click', function(e) 
             {
-                send(e.offsetX, e.offsetY);
+                send(e.offsetX, e.offsetY, #FFFFFF);
                 //document.getElementById("answer").innerHTML += '<br>' + 'click: ' + e.offsetX + '/' + e.offsetY;
 //                var rect = collides(rects, e.offsetX, e.offsetY);
 //                if (rect) 
