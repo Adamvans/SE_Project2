@@ -8,6 +8,7 @@ package grid;
 import com.aws.codestar.projecttemplates.Board;
 import com.aws.codestar.projecttemplates.Square;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -30,16 +31,19 @@ public class SessionHandler {
     public void addSession(Session session) 
     {
         sessions.add(session);
-        JsonObject addMessage = createAddMessage(gameBoard);
-        sendToSession(session, addMessage);
-        
+        JsonObject addMessage = createMessage(gameBoard);
+        sendToSession(session, addMessage); 
+
     }
     
-    private JsonObject createAddMessage(Board B) {
+    private JsonObject createMessage(Board b) {
         JsonObjectBuilder builder = Json.createObjectBuilder();
-        for(Square[] row: B.getBoard())
+        for(Square[] row: b.getBoard())
         {
-            
+            for(Square cur: row)
+            {
+                builder.add("color", cur.getColor());
+            }
         }
                 
         JsonObject addMessage = builder.build();
@@ -87,10 +91,5 @@ public class SessionHandler {
             sessions.remove(session);
             Logger.getLogger(SessionHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-   
-    
-     
-    
+    }    
 }
