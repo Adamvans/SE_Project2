@@ -70,24 +70,41 @@ public class WebSocket{
         JsonReader reader = Json.createReader(new StringReader(message) {
             JsonObject jsonMessage = reader.readObject();
 
-            if ("add".equals(jsonMessage.getString("action"))) {
-                Device device = new Device();
-                device.setName(jsonMessage.getString("name"));
-                device.setDescription(jsonMessage.getString("description"));
-                device.setType(jsonMessage.getString("type"));
-                device.setStatus("Off");
-                sessionH.addDevice(device);
+            if ("add".equals(jsonMessage.getString("click"))) {
+//                Device device = new Device();
+//                device.setName(jsonMessage.getString("name"));
+//                device.setDescription(jsonMessage.getString("description"));
+//                device.setType(jsonMessage.getString("type"));
+//                device.setStatus("Off");
+//                sessionH.addDevice(device);
+
+//
+//                   int x = (int) jsonMessage.getString("x");
+//                   int y = (int) jsonMessage.getString("y");
+                   
+                   int x = Integer.parseInt(jsonMessage.getString("x"));
+                   
+                   int y = Integer.parseInt(jsonMessage.getString("y"));
+                   
+                   //String color = jsonMessage.getString("color");
+                   
+                   
+                  sessionH.updateBoard(x,y);
+                   
+
+
+    
             }
 
-            if ("remove".equals(jsonMessage.getString("action"))) {
-                int id = (int) jsonMessage.getInt("id");
-                sessionH.removeDevice(id);
-            }
+//            if ("remove".equals(jsonMessage.getString("action"))) {
+//                int id = (int) jsonMessage.getInt("id");
+//                sessionH.removeDevice(id);
+//            }
 
-            if ("toggle".equals(jsonMessage.getString("action"))) {
-                int id = (int) jsonMessage.getInt("id");
-                sessionH.toggleDevice(id);
-            }
-        }
+//            if ("toggle".equals(jsonMessage.getString("action"))) {
+//                int id = (int) jsonMessage.getInt("id");
+//                sessionH.toggleDevice(id);
+//            }
+//        }
     }
 }
