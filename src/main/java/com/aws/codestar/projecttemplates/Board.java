@@ -45,10 +45,10 @@ public class Board
         }
     }
     
-    public void startStopGame (boolean flag)
-    {
-        runGame = flag;
-    }
+//    public void startStopGame (boolean flag)
+//    {
+//        runGame = flag;
+//    }
     //on click, pass in x and y of mouse
     public void setPosition (int x, int y, String color)
     {
@@ -72,56 +72,44 @@ public class Board
     public void runGame()
     {    
         Square temp [][] = new Square[22][22];
-        while (runGame)
+        //copy temp
+        for (int i = 1; i < 21; i++) //1 and 21 to skip the edges
         {
-            try        
+            for (int j = 1; j < 21; i++)
             {
-                Thread.sleep(500);
-            } 
-            catch(InterruptedException ex) 
-            {
-                Thread.currentThread().interrupt();
+                temp [i][j] = gameBoard[i][j];
             }
-            
-            //copy temp
-            for (int i = 1; i < 21; i++) //1 and 21 to skip the edges
+        }            
+
+        for (int i = 1; i < 21; i++)
+        {
+            for (int j = 1; j < 21; j++)
             {
-                for (int j = 1; j < 21; i++)
+                if (temp[i][j].isSelected())
                 {
-                    temp [i][j] = gameBoard[i][j];
+                   if (shouldDie (i,j))
+                   {
+                       temp[i][j].deselectSquare();
+                   }
                 }
-            }            
-            
-            for (int i = 1; i < 21; i++)
-            {
-                for (int j = 1; j < 21; j++)
+                else //not selected
                 {
-                    if (temp[i][j].isSelected())
+                    if(shouldLive(i,j))
                     {
-                       if (shouldDie (i,j))
-                       {
-                           temp[i][j].deselectSquare();
-                       }
+                        temp[i][j].selectSquare();
                     }
-                    else //not selected
-                    {
-                        if(shouldLive(i,j))
-                        {
-                            temp[i][j].selectSquare();
-                        }
-                    }
-                }//inner for
-            }//outer for
-            
-            //copy temp back to the game board
-            for (int i = 1; i < 21; i++)
-            {
-                for (int j = 1; j < 21; i++)
-                {
-                    gameBoard [i][j] = temp[i][j];
                 }
+            }//inner for
+        }//outer for
+
+        //copy temp back to the game board
+        for (int i = 1; i < 21; i++)
+        {
+            for (int j = 1; j < 21; i++)
+            {
+                gameBoard [i][j] = temp[i][j];
             }
-        }//while
+        }
     }
     
     //covert x/y of the mouse to the array index
