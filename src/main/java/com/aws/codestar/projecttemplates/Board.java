@@ -99,7 +99,7 @@ public class Board
                         temp[i][j].selectSquare();
                     }
                 }
-            }//inner for
+            }//inner for           
         }//outer for
 
         //copy temp back to the game board
@@ -124,20 +124,125 @@ public class Board
     }
     
     //sets color of the square
-    public void setColor () // do not call unless translateToIndex has been run
+    public void setIntersectColor (int x, int y) // do not call unless translateToIndex has been run
     {
-        if (gameBoard[indexX][indexY].isEdge())
+        if (gameBoard[x][y].isEdge())
         {
             return;
         } 
-        
-        if (gameBoard[indexX][indexY].isSelected())
+        boolean red = false;
+        boolean yellow = false; 
+        boolean blue = false;
+        String color = "";
+        if(gameBoard[x+1][y].isSelected())
         {
-           //set the color 
+           color = gameBoard[x+1][y].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
         }
-        else
+        if(gameBoard[x-1][y].isSelected())
         {
-            //set the non selected color
+            color = gameBoard[x-1][y].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        if(gameBoard[x][y+1].isSelected())
+        {
+             color = gameBoard[x][y+1].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        if(gameBoard[x][y-1].isSelected())
+        {
+             color = gameBoard[x][y-1].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        
+         if(gameBoard[x-1][y+1].isSelected())
+        {
+             color = gameBoard[x-1][y+1].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        if(gameBoard[x-1][y-1].isSelected())
+        {
+             color = gameBoard[x-1][y-1].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        if(gameBoard[x+1][y+1].isSelected())
+        {
+             color = gameBoard[x+1][y+1].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        if(gameBoard[x+1][y-1].isSelected())
+        {
+             color = gameBoard[x+1][y-1].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        
+        if (red)
+        {
+            gameBoard[x][y].setColor("red");
+        }
+        if (blue)
+        {
+             gameBoard[x][y].setColor("blue");
+        }
+        if (yellow)
+        {
+         gameBoard[x][y].setColor("yellow");
+        }
+        if (red && yellow)
+        {
+             gameBoard[x][y].setColor("orange");
+        }
+        if (red && blue)
+        {
+            gameBoard[x][y].setColor("purple");
+        }
+        if (blue && yellow)
+        {
+            gameBoard[x][y].setColor("green");
+        }
+        if (blue && red && yellow)
+        {
+            gameBoard[x][y].setColor("brown");
         }
             
     }
