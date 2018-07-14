@@ -145,7 +145,7 @@ public class WebSocket{
         {   
             try        
             {
-                Thread.sleep(500);
+                Thread.sleep(3000);
             } 
             catch(InterruptedException ex) 
             {
