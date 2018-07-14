@@ -70,13 +70,9 @@
                  
           <select id="color">
               <option value="red">Red</option>
-              <option value="green">Green</option>
+              <option value="yellow">Yellow</option>
               <option value="blue">Blue</option>
-              <option value="orange">Orange</option>
-              <option value="brown">Brown</option>
-              
-              
-              
+
           </select>
               
                   </p>
@@ -98,7 +94,6 @@
         {
              var cp = document.getElementById("color").value;
             send(e.offsetX, e.offsetY, cp);
-                alert(cp);
         }, false); 
     </script>
 </body>
