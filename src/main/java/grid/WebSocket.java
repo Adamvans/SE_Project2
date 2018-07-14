@@ -130,16 +130,30 @@ public class WebSocket{
         sendToAllSessions(addMessage);
     }
     
-    public void startStop (String flag)
+    public void startStop (String flag) throws IOException
     {
+        boolean runGame = false;
         if (flag.equals("start"))
-        {
-          gameBoard.startStopGame(true);
-          gameBoard.runGame();
+        { 
+            runGame = true;
         }
         else if (flag.equals("stop"))
         {
-            gameBoard.startStopGame(false);
+            runGame = false;
+        }
+        while (runGame)
+        {   
+            try        
+            {
+                Thread.sleep(3000);
+            } 
+            catch(InterruptedException ex) 
+            {
+                Thread.currentThread().interrupt();
+            }
+            gameBoard.runGame();
+            JsonArray addMessage = createMessage();
+            sendToAllSessions(addMessage);
         }
     }
 
