@@ -75,7 +75,7 @@ public class Board
         //copy temp
         for (int i = 1; i < 21; i++) //1 and 21 to skip the edges
         {
-            for (int j = 1; j < 21; i++)
+            for (int j = 1; j < 21; j++)
             {
                 temp [i][j] = gameBoard[i][j];
             }
@@ -105,7 +105,7 @@ public class Board
         //copy temp back to the game board
         for (int i = 1; i < 21; i++)
         {
-            for (int j = 1; j < 21; i++)
+            for (int j = 1; j < 21; j++)
             {
                 gameBoard [i][j] = temp[i][j];
             }
