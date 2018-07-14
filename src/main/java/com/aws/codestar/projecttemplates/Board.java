@@ -50,7 +50,7 @@ public class Board
         runGame = flag;
     }
     //on click, pass in x and y of mouse
-    public void setPosition (int x, int y)
+    public void setPosition (int x, int y, String color)
     {
         this.x = x;
         this.y = y;
@@ -59,10 +59,12 @@ public class Board
         if (gameBoard[indexX][indexY].isSelected())
         {
             gameBoard[indexX][indexY].deselectSquare();
+            gameBoard[indexX][indexY].setColor("white");
         }
         else if (!gameBoard[indexX][indexY].isSelected() &&!gameBoard[indexX][indexY].isEdge())
         {
             gameBoard[indexX][indexY].selectSquare();
+            gameBoard[indexX][indexY].setColor(color);
         }
     }
    
