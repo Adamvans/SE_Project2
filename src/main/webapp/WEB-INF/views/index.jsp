@@ -47,11 +47,13 @@
         
         function start() 
         {
-            socket.send("start");
+            var toSend = {action: "start"};
+            socket.send(toSend);
         }
         function stop() 
         {
-            socket.send("stop");
+            var toSend = {action: "stop"};
+            socket.send(toSend);
         }
     </script>  
   </head>
