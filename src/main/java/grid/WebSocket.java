@@ -77,8 +77,6 @@ public class WebSocket{
 
             if ("click".equals(jsonMessage.getString("action"))) 
             {
-//                   int x = (int) jsonMessage.getString("x");
-//                   int y = (int) jsonMessage.getString("y");
                
                    
                    int x = jsonMessage.getInt("x");
@@ -86,20 +84,18 @@ public class WebSocket{
                    int y = jsonMessage.getInt("y");
                    
                    String color = jsonMessage.getString("color");
-                   
-                   
-                  updateBoard(x,y,color);
+                   updateBoard(x,y,color);
             }
 
-//            if ("remove".equals(jsonMessage.getString("action"))) {
-//                int id = (int) jsonMessage.getInt("id");
-//                sessionH.removeDevice(id);
-//            }
-
-//            if ("toggle".equals(jsonMessage.getString("action"))) {
-//                int id = (int) jsonMessage.getInt("id");
-//                sessionH.toggleDevice(id);
-//            }
+            if ("start".equals(jsonMessage.getString("action"))) 
+            {
+                startStop("start");
+            } 
+            
+            if ("stop".equals(jsonMessage.getString("action"))) 
+            {
+                startStop("stop");
+            }
 //        }
     }
     
