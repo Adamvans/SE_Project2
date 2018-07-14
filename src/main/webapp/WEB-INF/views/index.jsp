@@ -48,12 +48,12 @@
         function start() 
         {
             var toSend = {action: "start"};
-            socket.send(toSend);
+            socket.send(JSON.stringify(toSend));
         }
         function stop() 
         {
             var toSend = {action: "stop"};
-            socket.send(toSend);
+            socket.send(JSON.stringify(toSend));
         }
     </script>  
   </head>
@@ -61,8 +61,8 @@
        
           
           <h1>Welcome to our software engineering project 2</h1>
-          <input type="button" value="Start" onclick="start();">
-          <input type="button" value="Stop" onclick="stop();">
+          <button onclick="start()">start</button>
+          <button onclick="stop()">stop</button>
 
           <h2><span id = "answer"></span><h2>
         

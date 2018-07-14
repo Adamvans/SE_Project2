@@ -128,8 +128,10 @@ public class Board
     private void translateToIndex (int x, int y)
     {
         //integer division should drop the remainder
-        indexX = x / 10;
-        indexY = y / 10;
+        indexX = (x / 10);
+        indexY = (y / 10);
+        indexX++;
+        indexY++;
        
     }
     
