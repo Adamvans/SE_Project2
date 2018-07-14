@@ -57,15 +57,15 @@ public class SessionHandler {
     
     public void startStop (String flag)
     {
-        if (flag.equals("start"))
-        {
-          gameBoard.startStopGame(true);
-          gameBoard.runGame();
-        }
-        else if (flag.equals("stop"))
-        {
-            gameBoard.startStopGame(false);
-        }
+//        if (flag.equals("start"))
+//        {
+//          gameBoard.startStopGame(true);
+//          gameBoard.runGame();
+//        }
+//        else if (flag.equals("stop"))
+//        {
+//            gameBoard.startStopGame(false);
+//        }
     }
 
     public void removeSession(Session session) 
