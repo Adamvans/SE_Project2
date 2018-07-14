@@ -25,7 +25,7 @@
                     {
                         row = i * 10;
                         col = j * 10;
-                        ctx.fillStyle= board[(i*10)+j+1];
+                        ctx.fillStyle= board[(i*20)+j+1];
                         ctx.fillRect(row, col, row + 10, row + 10);
                         ctx.rect(row, col, row + 10, col + 10);
                         ctx.stroke();
@@ -47,24 +47,25 @@
         
         function start() 
         {
-            socket.send("start");
+            var toSend = {action: "start"};
+            socket.send(JSON.stringify(toSend));
         }
         function stop() 
         {
-            socket.send("stop");
+            var toSend = {action: "stop"};
+            socket.send(JSON.stringify(toSend));
         }
     </script>  
   </head>
   <body class="">
        
           
-          <h1>Congratulations! It's Alive</h1>
-          <h2>Current date is: <%= new java.util.Date().toString() %></h2>
+
+           <h1>Welcome to our software engineering project 2</h1>
+          <button onclick="start()">start</button>
+          <button onclick="stop()">stop</button>
+
           <h2><span id = "answer"></span><h2>
-          
-                  <p>        
-          <input type="button" value="Start" onclick="CapacityChart();">
-          <input type="button" value="Stop" onclick="CapacityChart();">
           
                  
           <select id="color">
@@ -79,6 +80,7 @@
           </select>
               
                   </p>
+
         
          <br/>         
         <canvas id="myCanvas" width="200" height="200" style="border:1px solid #000000;">Your browser does not support the HTML5 canvas tag.</canvas>

@@ -52,6 +52,7 @@ public class SessionHandler {
     
     public void updateBoard (int x, int y, String color)
     {
+
         gameBoard.setPosition(x, y, color);
     }
     
