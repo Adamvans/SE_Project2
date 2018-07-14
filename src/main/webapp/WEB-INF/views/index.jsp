@@ -62,17 +62,41 @@
           <h2>Current date is: <%= new java.util.Date().toString() %></h2>
           <h2><span id = "answer"></span><h2>
           
+                  <p>        
           <input type="button" value="Start" onclick="CapacityChart();">
           <input type="button" value="Stop" onclick="CapacityChart();">
-
+          
+                 
+          <select id="color">
+              <option value="red">Red</option>
+              <option value="green">Green</option>
+              <option value="blue">Blue</option>
+              <option value="orange">Orange</option>
+              <option value="brown">Brown</option>
+              
+              
+              
+          </select>
+              
+                  </p>
         
+         <br/>         
         <canvas id="myCanvas" width="200" height="200" style="border:1px solid #000000;">Your browser does not support the HTML5 canvas tag.</canvas>
 <script>
 
+       
         var l = document.getElementById("myCanvas");
+        
+        //var c = cp.value;
+        
+        
+    
+        
         l.addEventListener('click', function(e) 
         {
-            send(e.offsetX, e.offsetY, "red");
+             var cp = document.getElementById("color").value;
+            send(e.offsetX, e.offsetY, cp);
+                alert(cp);
         }, false); 
     </script>
 </body>
