@@ -50,9 +50,10 @@ public class SessionHandler {
         return addMessage;
     }
     
-    public void updateBoard (int x, int y)
+    public void updateBoard (int x, int y, String color)
     {
-        //gameBoard.setPosition(x, y);
+
+        gameBoard.setPosition(x, y, color);
     }
     
     public void startStop (String flag)

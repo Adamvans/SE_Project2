@@ -60,19 +60,45 @@
   <body class="">
        
           
-          <h1>Welcome to our software engineering project 2</h1>
+
+           <h1>Welcome to our software engineering project 2</h1>
           <button onclick="start()">start</button>
           <button onclick="stop()">stop</button>
 
           <h2><span id = "answer"></span><h2>
+          
+                 
+          <select id="color">
+              <option value="red">Red</option>
+              <option value="green">Green</option>
+              <option value="blue">Blue</option>
+              <option value="orange">Orange</option>
+              <option value="brown">Brown</option>
+              
+              
+              
+          </select>
+              
+                  </p>
+
         
+         <br/>         
         <canvas id="myCanvas" width="200" height="200" style="border:1px solid #000000;">Your browser does not support the HTML5 canvas tag.</canvas>
 <script>
 
+       
         var l = document.getElementById("myCanvas");
+        
+        //var c = cp.value;
+        
+        
+    
+        
         l.addEventListener('click', function(e) 
         {
-            send(e.offsetX, e.offsetY, "red");
+             var cp = document.getElementById("color").value;
+            send(e.offsetX, e.offsetY, cp);
+                alert(cp);
         }, false); 
     </script>
 </body>
