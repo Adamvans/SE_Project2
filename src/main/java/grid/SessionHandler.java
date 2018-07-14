@@ -52,7 +52,7 @@ public class SessionHandler {
     
     public void updateBoard (int x, int y)
     {
-        gameBoard.setPosition(x, y);
+        //gameBoard.setPosition(x, y);
     }
     
     public void startStop (String flag)
