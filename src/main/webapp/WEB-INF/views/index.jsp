@@ -61,8 +61,8 @@
        
           
           <h1>Welcome to our software engineering project 2</h1>
-          <input type="button" value="Start" onclick="CapacityChart();">
-          <input type="button" value="Stop" onclick="CapacityChart();">
+          <input type="button" value="Start" onclick="start();">
+          <input type="button" value="Stop" onclick="stop();">
 
           <h2><span id = "answer"></span><h2>
         
