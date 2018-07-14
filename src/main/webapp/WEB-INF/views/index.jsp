@@ -25,7 +25,7 @@
                     {
                         row = i * 10;
                         col = j * 10;
-                        ctx.fillStyle= board[(i*10)+j+1];
+                        ctx.fillStyle= board[(i*20)+j+1];
                         ctx.fillRect(row, col, row + 10, row + 10);
                         ctx.rect(row, col, row + 10, col + 10);
                         ctx.stroke();
@@ -60,13 +60,11 @@
   <body class="">
        
           
-          <h1>Congratulations! It's Alive</h1>
-          <h2>Current date is: <%= new java.util.Date().toString() %></h2>
-          <h2><span id = "answer"></span><h2>
-          
+          <h1>Welcome to our software engineering project 2</h1>
           <input type="button" value="Start" onclick="CapacityChart();">
           <input type="button" value="Stop" onclick="CapacityChart();">
 
+          <h2><span id = "answer"></span><h2>
         
         <canvas id="myCanvas" width="200" height="200" style="border:1px solid #000000;">Your browser does not support the HTML5 canvas tag.</canvas>
 <script>
