@@ -15,7 +15,7 @@ public class Board
     private int y;
     private int indexX;
     private int indexY;
-    boolean runGame;
+    static boolean runGame;
     static Square gameBoard [][];
     
     public Square[][] getBoard()
