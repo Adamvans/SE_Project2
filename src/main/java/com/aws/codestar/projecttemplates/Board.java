@@ -111,6 +111,7 @@ public class Board
                     if(shouldLive(i,j))
                     {
                         temp[i][j].selectSquare();
+                        setTempIntersectColor(i,j); // it doesn't seem to be setting the color
                     }
                 }
             }//inner for           
@@ -157,7 +158,7 @@ public class Board
         boolean red = false;
         boolean yellow = false; 
         boolean blue = false;
-        String color = "";
+        String color;
         if(gameBoard[x+1][y].isSelected())
         {
            color = gameBoard[x+1][y].getColor();
@@ -371,5 +372,128 @@ public class Board
            return true; 
         }
         return false;
+    }
+    
+    public void setTempIntersectColor (int x, int y) // do not call unless translateToIndex has been run
+    {
+        if (temp[x][y].isEdge())
+        {
+            return;
+        } 
+        boolean red = false;
+        boolean yellow = false; 
+        boolean blue = false;
+        String color;
+        if(gameBoard[x+1][y].isSelected())
+        {
+           color = gameBoard[x+1][y].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        if(gameBoard[x-1][y].isSelected())
+        {
+            color = gameBoard[x-1][y].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        if(gameBoard[x][y+1].isSelected())
+        {
+             color = gameBoard[x][y+1].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        if(gameBoard[x][y-1].isSelected())
+        {
+             color = gameBoard[x][y-1].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        
+         if(gameBoard[x-1][y+1].isSelected())
+        {
+             color = gameBoard[x-1][y+1].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        if(gameBoard[x-1][y-1].isSelected())
+        {
+             color = gameBoard[x-1][y-1].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        if(gameBoard[x+1][y+1].isSelected())
+        {
+             color = gameBoard[x+1][y+1].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        if(gameBoard[x+1][y-1].isSelected())
+        {
+             color = gameBoard[x+1][y-1].getColor();
+           if (color.equalsIgnoreCase("red"))
+                red = true;
+           if (color.equalsIgnoreCase("blue"))
+                blue = true;
+            if (color.equalsIgnoreCase("yellow"))
+                yellow = true;
+        }
+        
+        if (red)
+        {
+            temp[x][y].setColor("red");
+        }
+        if (blue)
+        {
+             temp[x][y].setColor("blue");
+        }
+        if (yellow)
+        {
+         temp[x][y].setColor("yellow");
+        }
+        if (red && yellow)
+        {
+             temp[x][y].setColor("orange");
+        }
+        if (red && blue)
+        {
+            temp[x][y].setColor("purple");
+        }
+        if (blue && yellow)
+        {
+            temp[x][y].setColor("green");
+        }
+        if (blue && red && yellow)
+        {
+            temp[x][y].setColor("brown");
+        }
+            
     }
 }

@@ -14,7 +14,6 @@
         {
             
             var board = JSON.parse(event.data);
-            document.getElementById('answer').innerHTML += board+"</br>";
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
             
