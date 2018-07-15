@@ -17,6 +17,7 @@ public class Board
     private int indexY;
     static boolean runGame;
     static Square gameBoard [][];
+    static Square temp[][];
     
     public Square[][] getBoard()
     {
@@ -31,15 +32,19 @@ public class Board
     public Board()
     {
         gameBoard = new Square[22][22];
+        temp  = new Square[22][22];
         runGame = false;
+        
         for (int i = 0; i < 22; i++)
         {
             for (int j = 0; j < 22; j++)
             {
                 gameBoard[i][j] = new Square();
+                temp[i][j] = new Square();
                 if (i == 0 || i == 21 || j == 0 || j == 21)
                 {
                     gameBoard[i][j].isEdge();
+                    temp[i][j].isEdge();
                 }
             }
         }
@@ -71,13 +76,21 @@ public class Board
     //main run method
     public void runGame()
     {    
-        Square temp [][] = new Square[22][22];
-        //copy temp
         for (int i = 1; i < 21; i++) //1 and 21 to skip the edges
         {
             for (int j = 1; j < 21; j++)
             {
-                temp [i][j] = gameBoard[i][j];
+                //temp [i][j] = gameBoard[i][j];
+                if (gameBoard[i][j].isSelected())
+                {
+                    temp[i][j].selectSquare();
+                    temp[i][j].setColor(gameBoard[i][j].getColor());
+                }
+                if (!gameBoard[i][j].isSelected())
+                {
+                    temp[i][j].deselectSquare();
+                    temp[i][j].setColor("white");
+                }
             }
         }            
 
@@ -108,7 +121,17 @@ public class Board
         {
             for (int j = 1; j < 21; j++)
             {
-                gameBoard [i][j] = temp[i][j];
+                //gameBoard [i][j] = temp[i][j];
+                if (temp[i][j].isSelected())
+                {
+                    gameBoard[i][j].selectSquare();
+                    gameBoard[i][j].setColor(temp[i][j].getColor());
+                }
+                if (!temp[i][j].isSelected())
+                {
+                    gameBoard[i][j].deselectSquare();
+                    gameBoard[i][j].setColor("white");
+                }
             }
         }
     }
@@ -343,7 +366,7 @@ public class Board
         {
             neighbors++;
         }
-        if(neighbors > 3)
+        if(neighbors >= 3)
         {
            return true; 
         }
