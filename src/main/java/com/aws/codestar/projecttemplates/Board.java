@@ -16,7 +16,7 @@ public class Board
     private int indexX;
     private int indexY;
     boolean runGame;
-    Square gameBoard [][];
+    static Square gameBoard [][];
     
     public Square[][] getBoard()
     {
@@ -90,6 +90,7 @@ public class Board
                    if (shouldDie (i,j))
                    {
                        temp[i][j].deselectSquare();
+                       temp[i][j].setColor("white");
                    }
                 }
                 else //not selected
