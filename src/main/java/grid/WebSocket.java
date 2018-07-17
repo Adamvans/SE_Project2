@@ -152,25 +152,9 @@ public class WebSocket{
             {
                 Thread.currentThread().interrupt();
             }
-             if (runGame == false)
-            {
-                break;
-            }
             gameBoard.runGame();
-            if (runGame == false)
-            {
-                break;
-            }
             JsonArray addMessage = createMessage();
-            if (runGame == false)
-            {
-                break;
-            }
             sendToAllSessions(addMessage);
-            if (runGame == false)
-            {
-                break;
-            }
         }
     }
 
