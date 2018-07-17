@@ -6,6 +6,7 @@ import com.aws.codestar.projecttemplates.Board;
 import java.io.IOException;
 import java.io.StringReader;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,9 +36,10 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/WebSoc")
 public class WebSocket{
    private static int cnt = 0;
-   private final Set<Session> sessions = new HashSet();
+  
+   private Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
    private final Board gameBoard = new Board();
-   
+
    public WebSocket(){}
    
    public int getCount()
@@ -83,7 +85,7 @@ public class WebSocket{
                    
                    int y = jsonMessage.getInt("y");
                    
-                   String color = jsonMessage.getString("color");
+                    String color = jsonMessage.getString("color");
                    updateBoard(x,y,color);
             }
 
@@ -145,7 +147,7 @@ public class WebSocket{
         {   
             try        
             {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } 
            
             catch(InterruptedException ex) 
@@ -155,7 +157,7 @@ public class WebSocket{
             gameBoard.runGame();
             JsonArray addMessage = createMessage();
             sendToAllSessions(addMessage);
-        }
+        //}
     }
 
     public void removeSession(Session session) 
@@ -165,10 +167,13 @@ public class WebSocket{
     
     private void sendToAllSessions(JsonArray message) throws IOException 
     {
+        synchronized(sessions){
         for (Session session : sessions) 
         {
             sendToSession(session, message);
         }
+        }
+          
     }
 
     private void sendToSession(Session session, JsonArray message) throws IOException 
