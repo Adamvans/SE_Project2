@@ -35,8 +35,8 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/WebSoc")
 public class WebSocket{
    private static int cnt = 0;
-   private final Set<Session> sessions = new HashSet();
-   private final Board gameBoard = new Board();
+   private static Set<Session> sessions = new HashSet();
+   private static Board gameBoard = new Board();
    
    public WebSocket(){}
    
@@ -143,15 +143,15 @@ public class WebSocket{
         }
         while (runGame)
         {   
-            try        
-            {
-                Thread.sleep(1000);
-            } 
-           
-            catch(InterruptedException ex) 
-            {
-                Thread.currentThread().interrupt();
-            }
+//            try        
+//            {
+//                Thread.sleep(1000);
+//            } 
+//           
+//            catch(InterruptedException ex) 
+//            {
+//                Thread.currentThread().interrupt();
+//            }
             gameBoard.runGame();
             JsonArray addMessage = createMessage();
             sendToAllSessions(addMessage);
