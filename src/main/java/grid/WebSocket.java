@@ -141,8 +141,8 @@ public class WebSocket{
         {
             runGame = false;
         }
-        while (runGame)
-        {   
+        //while (runGame)
+        //{   
 //            try        
 //            {
 //                Thread.sleep(1000);
@@ -155,7 +155,7 @@ public class WebSocket{
             gameBoard.runGame();
             JsonArray addMessage = createMessage();
             sendToAllSessions(addMessage);
-        }
+        //}
     }
 
     public void removeSession(Session session) 
