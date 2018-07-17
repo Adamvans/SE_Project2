@@ -145,15 +145,32 @@ public class WebSocket{
         {   
             try        
             {
-                Thread.sleep(3000);
+                Thread.sleep(1000);
             } 
+           
             catch(InterruptedException ex) 
             {
                 Thread.currentThread().interrupt();
             }
+             if (runGame == false)
+            {
+                break;
+            }
             gameBoard.runGame();
+            if (runGame == false)
+            {
+                break;
+            }
             JsonArray addMessage = createMessage();
+            if (runGame == false)
+            {
+                break;
+            }
             sendToAllSessions(addMessage);
+            if (runGame == false)
+            {
+                break;
+            }
         }
     }
 
