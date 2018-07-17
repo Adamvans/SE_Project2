@@ -18,15 +18,22 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.spi.JsonProvider;
+import javax.websocket.OnClose;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.server.ServerEndpoint;
 
 /**
  *
  * @author Ethgar
  */
+
+
 public class SessionHandler {
-    private final Set<Session> sessions = new HashSet();
+    private static  Set<Session> sessions = new HashSet();
     private final Board gameBoard = new Board();
+    
     
     public void addSession(Session session) 
     {
@@ -58,22 +65,24 @@ public class SessionHandler {
     
     public void startStop (String flag)
     {
-//        if (flag.equals("start"))
-//        {
-//          gameBoard.startStopGame(true);
-//          gameBoard.runGame();
-//        }
-//        else if (flag.equals("stop"))
-//        {
-//            gameBoard.startStopGame(false);
-//        }
+        if (flag.equals("start"))
+        {
+          gameBoard.startStopGame(true);
+          gameBoard.runGame();
+        }
+        else if (flag.equals("stop"))
+        {
+            gameBoard.startStopGame(false);
+        }
     }
 
+    
     public void removeSession(Session session) 
     {
         sessions.remove(session);
     }
     
+
     private void sendToAllConnectedSessions(JsonObject message) 
     {
         for (Session session : sessions) 
