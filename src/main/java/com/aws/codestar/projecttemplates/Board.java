@@ -50,10 +50,10 @@ public class Board
         }
     }
     
-//    public void startStopGame (boolean flag)
-//    {
-//        runGame = flag;
-//    }
+    public void startStopGame (boolean flag)
+    {
+        runGame = flag;
+    }
     //on click, pass in x and y of mouse
     public void setPosition (int x, int y, String color)
     {
