@@ -367,7 +367,7 @@ public class Board
         {
             neighbors++;
         }
-        if(neighbors >= 3)
+        if(neighbors == 3)
         {
            return true; 
         }
